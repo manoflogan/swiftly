@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".product.ProductActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    android:fitsSystemWindows="true"
+    tools:context=".restaurants.RestaurantListActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="?attr/toolbarStyle">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:tooltipText="@string/app_name"
+            app:popupTheme="@style/Theme.Swiftly.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        />
-    <include layout="@layout/activity_empty_view" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_duration="800">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+                <include layout="@layout/activity_placeholder_layout" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <include layout="@layout/item_list" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

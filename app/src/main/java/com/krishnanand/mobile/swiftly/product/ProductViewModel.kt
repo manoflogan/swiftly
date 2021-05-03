@@ -23,7 +23,7 @@ class ProductViewModel @Inject constructor(
         get() = _productsLiveData
 
 
-    fun makeAsyncRequest() {
+    fun fetchProducts() {
         viewModelScope.launch {
             mainApi.fetchProducts().enqueue(object : Callback<Product> {
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {

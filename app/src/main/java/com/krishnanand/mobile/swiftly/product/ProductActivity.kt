@@ -20,6 +20,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.android.synthetic.main.activity_product.*
 import javax.inject.Inject
 
 class ProductActivity : AppCompatActivity(), HasAndroidInjector {
@@ -50,33 +51,37 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
-        /*val mainActivityAdapter = ProductRecyclerAdapter(viewModel)
+        val productRecyclerAdapter = ProductRecyclerAdapter(viewModel)
         viewModel.productsLiveData.observe(this, {
-          if (it == null) {
-              recyclerView.visibility = View.INVISIBLE
-              emptyViewContainer.visibility = View.VISIBLE
-          } else {
-              emptyViewContainer.visibility = View.INVISIBLE
-              recyclerView.visibility = View.VISIBLE
-              mainActivityAdapter.product = it
-              mainActivityAdapter.notifyDataSetChanged()
-          }
+            if (it == null) {
+                recyclerView.visibility = View.INVISIBLE
+                emptyViewContainer.visibility = View.VISIBLE
+            } else {
+                emptyViewContainer.visibility = View.INVISIBLE
+                recyclerView.visibility = View.VISIBLE
+                productRecyclerAdapter.product = it
+                productRecyclerAdapter.notifyDataSetChanged()
+            }
+            shimmer_container.stopShimmer()
+            shimmer_container.visibility = View.GONE;
         })
         with(recyclerView) {
             val linearLayoutManager = LinearLayoutManager(this@ProductActivity)
             layoutManager = linearLayoutManager
-            adapter = mainActivityAdapter
+            adapter = productRecyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(this@ProductActivity, linearLayoutManager.orientation))
-        }*/
+        }
     }
 
     override fun onResume() {
         super.onResume()
-       /* viewModel.makeAsyncRequest()
-        emptyRetryButton.setOnClickListener {
-            viewModel.makeAsyncRequest()
-        }*/
+        viewModel.fetchProducts()
+        if (emptyViewContainer.visibility == View.VISIBLE) {
+            emptyRetryButton.setOnClickListener {
+                viewModel.fetchProducts()
+            }
+        }
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
