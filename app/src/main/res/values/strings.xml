@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Manager Special</string>
+    <string name="no_data_error">There is no data</string>
+    <string name="retry_error">Retry</string>
+</resources>
