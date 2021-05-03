@@ -27,9 +27,8 @@ class ProductViewModel @Inject constructor(
         viewModelScope.launch {
             mainApi.fetchProducts().enqueue(object : Callback<Product> {
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                    if (response.errorBody() != null) {
-                        _productsLiveData.value = response.body()
-                    }
+                    _productsLiveData.value = if (response.errorBody() != null) null else response.body()
+
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
