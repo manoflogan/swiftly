@@ -85,36 +85,3 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 }
-
-class ProductViewHolder(
-    private val productItemBinding: ProductItemBinding,
-    private val viewModel: ProductViewModel
-): RecyclerView.ViewHolder(
-    productItemBinding.root
-) {
-
-    fun bindViewHolder(managerSpecial: ManagerSpecials?) {
-        productItemBinding.managerSpecial = managerSpecial
-        productItemBinding.viewModel = viewModel
-        productItemBinding.executePendingBindings()
-    }
-}
-
-class ProductRecyclerAdapter(
-    private val viewModel: ProductViewModel
-): RecyclerView.Adapter<ProductViewHolder>() {
-
-    var product: Product? = null;
-
-    override fun getItemCount(): Int = product?.managerSpecials?.size ?: 0
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val productItemBinding: ProductItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.product_item, parent, false)
-        return ProductViewHolder(productItemBinding, viewModel)
-    }
-
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-       holder.bindViewHolder(product?.managerSpecials?.get(position))
-    }
-}

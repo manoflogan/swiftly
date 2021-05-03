@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SwiftyTakeHomeProject.iml" filepath="$PROJECT_DIR$/.idea/modules/SwiftyTakeHomeProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SwiftyTakeHomeProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SwiftyTakeHomeProject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SwiftlyTakeHomeProject.iml" filepath="$PROJECT_DIR$/.idea/modules/SwiftlyTakeHomeProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SwiftlyTakeHomeProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SwiftlyTakeHomeProject.app.iml" />
     </modules>
   </component>
 </project>
