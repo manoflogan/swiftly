@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textColourPrimary">#DCDCDC</color>
+    <color name="textColourPrimaryVariant">#E62048</color>
+    <color name="textColourPrimaryDark">@android:color/white</color>
+    <color name="textColourOnPrimary">#171717</color>
+    <color name="textColourAccent">#5192FF</color>
+    <color name="textColourSecondary">#9B9E9F</color>
+    <color name="textColourSecondaryVariant">#171717</color>
+    <color name="textColourOnSecondary">#FF848484</color>
+
+    <color name="placeholder_background">#fafafa</color>
+    <color name="recycler_view">#d3d3d3</color>
+</resources>

@@ -70,7 +70,6 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
             layoutManager = linearLayoutManager
             adapter = productRecyclerAdapter
             setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(this@ProductActivity, linearLayoutManager.orientation))
         }
     }
 

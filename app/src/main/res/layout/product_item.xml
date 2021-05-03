@@ -17,6 +17,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standardMargin2x"
+        android:padding="@dimen/standardMargin2x"
+        style="@style/Swiftly.CardView"
         android:visibility="@{managerSpecial != null ?  View.VISIBLE : View.GONE}">
 
         <RelativeLayout

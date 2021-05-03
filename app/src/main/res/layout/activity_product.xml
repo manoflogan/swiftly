@@ -6,22 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".restaurants.RestaurantListActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="?attr/toolbarStyle">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            tools:tooltipText="@string/app_name"
-            app:popupTheme="@style/Theme.Swiftly.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    tools:context=".product.ProductActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/item_container"
