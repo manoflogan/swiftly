@@ -6,13 +6,11 @@ import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.krishnanand.mobile.swiftly.R
-import com.krishnanand.mobile.swiftly.utils.calculateScreenDimensions
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -57,7 +55,6 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
                 emptyViewContainer.visibility = View.INVISIBLE
                 with(productRecyclerAdapter) {
                     product = it
-                    dimensions = recyclerView.calculateScreenDimensions(this@ProductActivity)
                 }
                 with(recyclerView) {
                     layoutManager = FlexboxLayoutManager(this@ProductActivity).apply {
@@ -78,6 +75,7 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
 
     override fun onResume() {
         super.onResume()
+        shimmer_container.startShimmer()
         viewModel.fetchProducts()
         if (emptyViewContainer.visibility == View.VISIBLE) {
             emptyRetryButton.setOnClickListener {
