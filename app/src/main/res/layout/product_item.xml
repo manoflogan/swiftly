@@ -15,10 +15,9 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standardMargin2x"
-        android:padding="@dimen/standardMargin2x"
         style="@style/Swiftly.CardView"
         android:visibility="@{managerSpecial != null ?  View.VISIBLE : View.GONE}">
 
@@ -38,13 +37,12 @@
                 android:scaleType="fitCenter"
                 android:contentDescription="@null"
                 android:layout_marginEnd="@dimen/standardMargin2x"
-                android:src="@drawable/ic_swiftly"
                 app:imageUrl="@{managerSpecial.imageUrl}" />
 
             <LinearLayout
                 android:id="@+id/product_price_container"
-                android:layout_marginStart="@dimen/standardMargin2x"
-                android:layout_marginBottom="@dimen/standardMargin2x"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginBottom="@dimen/standardMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/product_image_url"

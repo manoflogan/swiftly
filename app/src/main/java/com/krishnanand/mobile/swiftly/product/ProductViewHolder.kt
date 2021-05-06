@@ -3,7 +3,6 @@ package com.krishnanand.mobile.swiftly.product
 import androidx.recyclerview.widget.RecyclerView
 import com.krishnanand.mobile.swiftly.data.ManagerSpecials
 import com.krishnanand.mobile.swiftly.databinding.ProductItemBinding
-
 class ProductViewHolder(
     private val productItemBinding: ProductItemBinding,
     private val viewModel: ProductViewModel
@@ -12,6 +11,7 @@ class ProductViewHolder(
 ) {
 
     fun bindViewHolder(managerSpecial: ManagerSpecials?) {
+        managerSpecial ?: return
         productItemBinding.managerSpecial = managerSpecial
         productItemBinding.viewModel = viewModel
         productItemBinding.executePendingBindings()

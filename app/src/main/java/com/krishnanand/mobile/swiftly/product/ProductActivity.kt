@@ -2,20 +2,16 @@ package com.krishnanand.mobile.swiftly.product
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.krishnanand.mobile.swiftly.data.ManagerSpecials
-import com.krishnanand.mobile.swiftly.data.Product
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.krishnanand.mobile.swiftly.R
-import com.krishnanand.mobile.swiftly.databinding.ProductItemBinding
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -60,17 +56,19 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
                 emptyViewContainer.visibility = View.INVISIBLE
                 recyclerView.visibility = View.VISIBLE
                 productRecyclerAdapter.product = it
+                with(recyclerView) {
+                    layoutManager = FlexboxLayoutManager(this@ProductActivity).apply {
+                        flexDirection = FlexDirection.ROW
+                        justifyContent = JustifyContent.SPACE_AROUND
+                    }
+                    adapter = productRecyclerAdapter
+                    setHasFixedSize(true)
+                }
                 productRecyclerAdapter.notifyDataSetChanged()
             }
             shimmer_container.stopShimmer()
             shimmer_container.visibility = View.GONE;
         })
-        with(recyclerView) {
-            val linearLayoutManager = LinearLayoutManager(this@ProductActivity)
-            layoutManager = linearLayoutManager
-            adapter = productRecyclerAdapter
-            setHasFixedSize(true)
-        }
     }
 
     override fun onResume() {
