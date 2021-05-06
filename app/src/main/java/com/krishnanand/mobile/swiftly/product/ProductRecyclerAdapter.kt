@@ -12,9 +12,11 @@ class ProductRecyclerAdapter(
     private val viewModel: ProductViewModel
 ): RecyclerView.Adapter<ProductViewHolder>() {
 
-    var product: Product? = null;
+    lateinit var product: Product
 
-    override fun getItemCount(): Int = product?.managerSpecials?.size ?: 0
+    lateinit var dimensions: Pair<Float, Float>
+
+    override fun getItemCount(): Int = product.managerSpecials.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -23,6 +25,6 @@ class ProductRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bindViewHolder(product?.managerSpecials?.get(position))
+        holder.bindViewHolder(product.managerSpecials[position])
     }
 }

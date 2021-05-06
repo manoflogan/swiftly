@@ -21,7 +21,7 @@
         style="@style/Swiftly.CardView"
         android:visibility="@{managerSpecial != null ?  View.VISIBLE : View.GONE}">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standardMargin"
@@ -36,7 +36,9 @@
                 android:layout_alignParentStart="true"
                 android:scaleType="fitCenter"
                 android:contentDescription="@null"
-                android:layout_marginEnd="@dimen/standardMargin2x"
+                android:layout_marginEnd="@dimen/standardMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:imageUrl="@{managerSpecial.imageUrl}" />
 
             <LinearLayout
@@ -45,12 +47,13 @@
                 android:layout_marginBottom="@dimen/standardMargin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/product_image_url"
-                android:layout_alignParentEnd="true"
-                android:layout_alignWithParentIfMissing="true"
                 android:orientation="vertical"
-                android:layout_marginEnd="@dimen/standardMargin2x"
-                android:gravity="end">
+                android:layout_marginEnd="@dimen/standardMargin"
+                android:gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/product_image_url"
+
+                >
 
                 <TextView
                     android:id="@+id/product_original_price"
@@ -74,18 +77,21 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/product_display_name"
-                android:layout_width="@dimen/text_display_width"
+                android:layout_width="wrap_content"
+                android:maxWidth="@dimen/text_display_width"
                 android:layout_height="wrap_content"
                 android:gravity="center|center_vertical"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/product_price_container"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:text="@{managerSpecial.displayName}"
                 android:textAppearance="@style/Swiftly.TextAppearance.Bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_price_container"
                 tools:text="Onion flavoured rings"
                 />
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>
