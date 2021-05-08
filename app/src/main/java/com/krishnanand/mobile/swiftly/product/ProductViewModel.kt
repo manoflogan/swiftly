@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.krishnanand.mobile.swiftly.data.ManagerSpecials
 import com.krishnanand.mobile.swiftly.data.Product
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -14,7 +13,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ProductViewModel @Inject constructor(
-    private val mainApi: ProductApi
+    private val productApi: ProductApi
 ): ViewModel() {
 
     private val _productsLiveData: MutableLiveData<Product> = MutableLiveData()
@@ -25,7 +24,7 @@ class ProductViewModel @Inject constructor(
 
     fun fetchProducts() {
         viewModelScope.launch {
-            mainApi.fetchProducts().enqueue(object : Callback<Product> {
+            productApi.fetchProducts().enqueue(object : Callback<Product> {
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {
                     _productsLiveData.value = if (response.errorBody() != null) null else response.body()
                 }
