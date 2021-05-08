@@ -9,8 +9,13 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Product(
-    val canvasUnits: Int,
-
+    /**
+     * Canvas unit
+     */
+    val canvasUnit: Int,
+    /**
+     * List of manager spacecials
+     */
     val managerSpecials: List<ManagerSpecials>
 ): Parcelable
 

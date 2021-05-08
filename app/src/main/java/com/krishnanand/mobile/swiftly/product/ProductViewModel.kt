@@ -28,7 +28,6 @@ class ProductViewModel @Inject constructor(
             mainApi.fetchProducts().enqueue(object : Callback<Product> {
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {
                     _productsLiveData.value = if (response.errorBody() != null) null else response.body()
-
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
@@ -36,9 +35,5 @@ class ProductViewModel @Inject constructor(
                 }
             })
         }
-    }
-
-    fun selectSpecial(managerSpecial: ManagerSpecials) {
-
     }
 }

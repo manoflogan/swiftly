@@ -2,20 +2,16 @@ package com.krishnanand.mobile.swiftly.product
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.krishnanand.mobile.swiftly.data.ManagerSpecials
-import com.krishnanand.mobile.swiftly.data.Product
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.krishnanand.mobile.swiftly.R
-import com.krishnanand.mobile.swiftly.databinding.ProductItemBinding
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -47,6 +43,10 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
         emptyViewContainer.findViewById(R.id.empty_retry)
     }
 
+    private val shimmerContainer: ShimmerFrameLayout by lazy {
+        findViewById(R.id.shimmer_container)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -58,23 +58,29 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
                 emptyViewContainer.visibility = View.VISIBLE
             } else {
                 emptyViewContainer.visibility = View.INVISIBLE
-                recyclerView.visibility = View.VISIBLE
-                productRecyclerAdapter.product = it
+                with(productRecyclerAdapter) {
+                    product = it
+                }
+                with(recyclerView) {
+                    layoutManager = FlexboxLayoutManager(this@ProductActivity).apply {
+                        flexDirection = FlexDirection.ROW
+                        justifyContent = JustifyContent.FLEX_START
+                        visibility = View.VISIBLE
+                    }
+
+                    adapter = productRecyclerAdapter
+                    setHasFixedSize(true)
+                }
                 productRecyclerAdapter.notifyDataSetChanged()
             }
-            shimmer_container.stopShimmer()
+            shimmerContainer.stopShimmer()
             shimmer_container.visibility = View.GONE;
         })
-        with(recyclerView) {
-            val linearLayoutManager = LinearLayoutManager(this@ProductActivity)
-            layoutManager = linearLayoutManager
-            adapter = productRecyclerAdapter
-            setHasFixedSize(true)
-        }
     }
 
     override fun onResume() {
         super.onResume()
+        shimmerContainer.startShimmer()
         viewModel.fetchProducts()
         if (emptyViewContainer.visibility == View.VISIBLE) {
             emptyRetryButton.setOnClickListener {
