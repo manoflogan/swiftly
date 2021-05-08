@@ -36,8 +36,4 @@ class ProductViewModel @Inject constructor(
             })
         }
     }
-
-    fun selectSpecial(managerSpecial: ManagerSpecials) {
-
-    }
 }

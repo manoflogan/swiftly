@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
@@ -42,6 +43,10 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
         emptyViewContainer.findViewById(R.id.empty_retry)
     }
 
+    private val shimmerContainer: ShimmerFrameLayout by lazy {
+        findViewById(R.id.shimmer_container)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -68,14 +73,14 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
                 }
                 productRecyclerAdapter.notifyDataSetChanged()
             }
-            shimmer_container.stopShimmer()
+            shimmerContainer.stopShimmer()
             shimmer_container.visibility = View.GONE;
         })
     }
 
     override fun onResume() {
         super.onResume()
-        shimmer_container.startShimmer()
+        shimmerContainer.startShimmer()
         viewModel.fetchProducts()
         if (emptyViewContainer.visibility == View.VISIBLE) {
             emptyRetryButton.setOnClickListener {

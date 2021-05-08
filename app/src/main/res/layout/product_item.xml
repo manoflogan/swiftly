@@ -22,75 +22,72 @@
         android:visibility="@{managerSpecial != null ?  View.VISIBLE : View.GONE}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standardMargin"
-            android:onClick="@{(v) -> viewModel.selectSpecial(managerSpecial)}"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_marginBottom="@dimen/standardMargin"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/product_image_url"
                 android:layout_width="@dimen/product_image_width"
                 android:layout_height="@dimen/product_image_height"
-                android:importantForAccessibility="no"
-                android:layout_alignParentStart="true"
-                android:scaleType="fitCenter"
                 android:contentDescription="@null"
-                android:layout_marginEnd="@dimen/standardMargin"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{managerSpecial.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:imageUrl="@{managerSpecial.imageUrl}" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/product_price_container"
-                android:layout_marginStart="@dimen/standardMargin"
-                android:layout_marginBottom="@dimen/standardMargin"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="@dimen/standardMargin"
+                android:layout_marginStart="@dimen/standardMargin"
                 android:gravity="end"
-                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/product_image_url"
-
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/product_original_price"
-                    android:layout_marginBottom="@dimen/standardMargin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/standardMargin"
                     android:background="@drawable/strikethrough"
                     android:textAppearance="@style/Swiftly.TextAppearance"
                     app:inUSD="@{managerSpecial.originalPrice}"
-                    tools:text="$5.00"/>
+                    tools:text="$5.00" />
 
                 <TextView
                     android:id="@+id/product_price"
-                    android:layout_marginBottom="@dimen/standardMargin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/standardMargin"
                     android:textAppearance="@style/Swiftly.TextAppearance.Secondary"
                     app:inUSD="@{managerSpecial.price}"
 
-                    tools:text="$5.00"/>
+                    tools:text="$5.00" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/product_display_name"
                 android:layout_width="wrap_content"
-                android:maxWidth="@dimen/text_display_width"
                 android:layout_height="wrap_content"
-                android:gravity="center|center_vertical"
                 android:layout_centerHorizontal="true"
-                android:maxLines="2"
                 android:ellipsize="end"
+                android:gravity="center|center_vertical"
+                android:maxWidth="@dimen/text_display_width"
+                android:maxLines="2"
                 android:text="@{managerSpecial.displayName}"
                 android:textAppearance="@style/Swiftly.TextAppearance.Bold"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_price_container"
-                tools:text="Onion flavoured rings"
-                />
+                tools:text="Onion flavoured rings" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

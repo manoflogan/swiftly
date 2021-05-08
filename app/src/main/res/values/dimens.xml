@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="standardMargin">8dp</dimen>
-    <dimen name="standardMargin2x">16dp</dimen>
-    <dimen name="product_image_width">45dp</dimen>
-    <dimen name="product_image_height">45dp</dimen>
+    <dimen name="standardMargin">6dp</dimen>
+    <dimen name="standardMargin2x">12dp</dimen>
+    <dimen name="product_image_width">30dp</dimen>
+    <dimen name="product_image_height">30dp</dimen>
 
     <dimen name="placeholder_image_width">60dp</dimen>
     <dimen name="placeholder_image_height">60dp</dimen>
