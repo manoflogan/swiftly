@@ -22,11 +22,9 @@
         android:visibility="@{managerSpecial != null ?  View.VISIBLE : View.GONE}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/standardMargin"
-            android:layout_marginTop="@dimen/standardMargin"
-            android:layout_marginBottom="@dimen/standardMargin"
+            android:layout_margin="@dimen/standardMargin"
             android:orientation="horizontal">
 
             <ImageView
@@ -56,9 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/standardMargin"
-                    android:background="@drawable/strikethrough"
                     android:textAppearance="@style/Swiftly.TextAppearance"
-                    app:inUSD="@{managerSpecial.originalPrice}"
+                    app:showMoneyStrikeThrough="@{managerSpecial.originalPrice}"
                     tools:text="$5.00" />
 
                 <TextView
