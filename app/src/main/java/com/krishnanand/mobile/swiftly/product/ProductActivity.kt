@@ -56,6 +56,9 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
             if (it == null) {
                 recyclerView.visibility = View.INVISIBLE
                 emptyViewContainer.visibility = View.VISIBLE
+                emptyRetryButton.setOnClickListener {
+                    viewModel.fetchProducts()
+                }
             } else {
                 emptyViewContainer.visibility = View.INVISIBLE
                 with(productRecyclerAdapter) {
@@ -82,11 +85,6 @@ class ProductActivity : AppCompatActivity(), HasAndroidInjector {
         super.onResume()
         shimmerContainer.startShimmer()
         viewModel.fetchProducts()
-        if (emptyViewContainer.visibility == View.VISIBLE) {
-            emptyRetryButton.setOnClickListener {
-                viewModel.fetchProducts()
-            }
-        }
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector

@@ -100,16 +100,7 @@ class ProductActivityTest {
             verify(mockViewModelFactory).create(ProductViewModel::class.java)
             verify(mockProductViewModel).fetchProducts()
             Espresso.onView(ViewMatchers.withId(R.id.empty_view_container)).check(
-                object: ViewAssertion {
-                    override fun check(
-                        view: View?,
-                        noViewFoundException: NoMatchingViewException?
-                    ) {
-                        view?: throw noViewFoundException!!
-                        MatcherAssert.assertThat(view.visibility, Matchers.`is`(View.VISIBLE))
-                    }
-                }
-            )
+                ViewAssertions.matches(ViewMatchers.isDisplayed()))
         }
     }
 
