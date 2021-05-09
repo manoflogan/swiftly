@@ -11,6 +11,7 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.stub
 import org.mockito.kotlin.whenever
+import java.lang.IllegalStateException
 
 class SwiftlyTestAppliciation: Application(), HasAndroidInjector {
 
@@ -30,6 +31,10 @@ class SwiftlyTestAppliciation: Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
         // See <a href="https://github.com/square/picasso/issues/1929" />
-        Picasso.setSingletonInstance(Picasso.Builder(this).build());
+        try {
+            Picasso.setSingletonInstance(Picasso.Builder(this).build())
+        } catch (ise: IllegalStateException) {
+            // Ignore it for tests.
+        }
     }
 }
