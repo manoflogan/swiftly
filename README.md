@@ -1,15 +1,5 @@
 # Swiftly Android Coding Exercise
 
-## Preface
-
-To introduce Swiftly to your coding style and technique, we'd like you to do a small coding exercise. This is not a coding test where we give you a score or run it through a suite of tests for correctness.
-
-Our hope is that we can use this to seed a discussion that provides us with an understanding of your design and coding abilities and you with an idea of what working at Swiftly will be like. We believe this better reflects what engineers do than coding common patterns on a white board does.
-
-## What We're Looking For
-
-Think of this as real code you would be checking in. Swiftly values self-descriptive, [SOLID](https://en.wikipedia.org/wiki/SOLID), maintainable, testable designs and code.
-
 ## Overview
 Grocery store managers often pick products to put on "manager's special." These products are chosen in order to drive customers to the store and increase basket size. Swiftly has a tool that allows managers to select which product they want to place under "manager's specials" as well as the dimensions of product frame.
 

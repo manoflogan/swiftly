@@ -21,12 +21,12 @@ class ProductRecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val productItemBinding: ProductItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.product_item, parent, false)
-        /**val layoutParams = productItemBinding.root.layoutParams  as ViewGroup.MarginLayoutParams
+        val layoutParams = productItemBinding.root.layoutParams  as ViewGroup.MarginLayoutParams
         with(layoutParams) {
             val managerWidth = product.managerSpecials[viewType].width
             width = (parent.width * managerWidth.toFloat() / product.canvasUnit).toInt() - leftMargin - rightMargin
         }
-        productItemBinding.root.layoutParams = layoutParams*/
+        productItemBinding.root.layoutParams = layoutParams
         return ProductViewHolder(productItemBinding, viewModel)
     }
 
