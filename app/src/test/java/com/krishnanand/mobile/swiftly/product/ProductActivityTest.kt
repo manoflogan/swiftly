@@ -1,10 +1,14 @@
 package com.krishnanand.mobile.swiftly.product
 
 import android.content.Context
+import android.view.View
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -16,6 +20,8 @@ import com.krishnanand.mobile.swiftly.utils.InjectableActivityScenario
 import com.krishnanand.mobile.swiftly.utils.injectableActivityScenario
 import com.krishnanand.mobile.swiftly.utils.readProductFromFile
 import dagger.android.DispatchingAndroidInjector
+import org.hamcrest.MatcherAssert
+import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,7 +29,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.kotlin.*
-import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowLooper
@@ -73,7 +78,7 @@ class ProductActivityTest {
     }
 
     @Test
-    fun testActivityLaunch__ReturnsProducts__ShowsView() {
+    fun testActivityLaunch__ReturnsProducts__ShowsSuccessView() {
         launchActivity(product) {
             ShadowLooper.shadowMainLooper().idle()
             verify(mockViewModelFactory).create(ProductViewModel::class.java)
@@ -84,6 +89,26 @@ class ProductActivityTest {
                         ViewMatchers.withText(product.managerSpecials[0].displayName)
                     )
                 )
+            )
+        }
+    }
+
+    @Test
+    fun testActivityLaunch__ReturnsNull__ShowsErrorView() {
+        launchActivity(null) {
+            ShadowLooper.shadowMainLooper().idle()
+            verify(mockViewModelFactory).create(ProductViewModel::class.java)
+            verify(mockProductViewModel).fetchProducts()
+            Espresso.onView(ViewMatchers.withId(R.id.empty_view_container)).check(
+                object: ViewAssertion {
+                    override fun check(
+                        view: View?,
+                        noViewFoundException: NoMatchingViewException?
+                    ) {
+                        view?: throw noViewFoundException!!
+                        MatcherAssert.assertThat(view.visibility, Matchers.`is`(View.VISIBLE))
+                    }
+                }
             )
         }
     }
